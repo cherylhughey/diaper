@@ -9,7 +9,8 @@ require "capybara/rails"
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
 require "pry"
-require "sucker_punch/testing/inline"
+require 'sidekiq/testing'
+Sidekiq::Testing.inline!
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
