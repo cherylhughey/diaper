@@ -1,20 +1,19 @@
 # == Schema Information
 #
-# Table name: contractors
+# Table name: vendors
 #
-#  id              :integer          not null, primary key
+#  id              :bigint(8)        not null, primary key
 #  contact_name    :string
 #  email           :string
 #  phone           :string
 #  comment         :string
 #  organization_id :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
 #  address         :string
 #  business_name   :string
 #  latitude        :float
 #  longitude       :float
-#  type            :string           default("DiaperDriveParticipant")
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 require "rails_helper"
@@ -25,12 +24,6 @@ RSpec.describe Vendor, type: :model do
       expect(build(:vendor, contact_name: nil, business_name: nil)).not_to be_valid
       expect(build(:vendor, contact_name: nil, business_name: "George Company").valid?).to eq(true)
       expect(build(:vendor, contact_name: "George Henry").valid?).to eq(true)
-    end
-
-    it "is invalid unless it has either a phone number or an email" do
-      expect(build(:vendor, phone: nil, email: nil)).not_to be_valid
-      expect(build(:vendor, phone: nil)).to be_valid
-      expect(build(:vendor, email: nil)).to be_valid
     end
 
     it "is invalid without an organization" do
